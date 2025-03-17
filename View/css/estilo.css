@@ -1,0 +1,88 @@
+/* Fondo de pantalla con imagen */
+body {
+    background: url('../images/playa.jpg') no-repeat center center fixed; /* Ruta a la imagen local */
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  
+  /* Cuadro de formulario transparente */
+  .card {
+    background: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente mejorado */
+    border-radius: 20px; /* Esquinas más redondeadas */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); /* Sombra más prominente */
+    padding: 20px; /* Espaciado interno */
+    backdrop-filter: blur(10px); /* Desenfoque de fondo para un efecto elegante */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+  }
+  
+  /* Título del formulario */
+  .card-title {
+    font-size: 1.8rem; /* Tamaño mayor */
+    color: #333;
+    font-weight: bold; /* Más énfasis */
+    text-align: center;
+  }
+  
+  /* Botón de inicio de sesión */
+  .btn-login {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+    background-color: #007bff; /* Color por defecto (azul) */
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animaciones */
+  }
+  
+  .btn-login:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
+    transform: scale(1.05); /* Ligeramente más grande */
+  }
+  
+  .btn-login:active {
+    background-color: #003f7f; /* Azul más intenso al hacer clic */
+    transform: scale(0.98); /* Ligeramente más pequeño */
+  }
+  
+  /* Input del formulario */
+  .form-floating input {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+  }
+  
+  .form-floating input:focus {
+    border-color: #007bff; /* Borde azul al enfocar */
+    outline: none; /* Elimina el borde predeterminado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Resplandor sutil */
+  }
+  
+  /* Etiquetas flotantes */
+  .form-floating label {
+    color: #555;
+    font-size: 0.9rem;
+  }
+  
+  /* Ajuste del checkbox */
+  .form-check-label {
+    color: #333;
+  }
+  
+  /* Línea divisoria */
+  hr {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ajustes adicionales para dispositivos pequeños */
+  @media (max-width: 576px) {
+    .card {
+      width: 100%; /* Toma todo el ancho en pantallas pequeñas */
+    }
+  }
+  
+  
+  
