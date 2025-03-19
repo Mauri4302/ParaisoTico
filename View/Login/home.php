@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../Styles/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -34,7 +34,7 @@
     </div>
 </nav>
 
-<header class="masthead text-white text-center" style="background-image: url('../images/sol.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<header class="masthead text-white text-center" style="background-image: url('../Img/sol.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container d-flex align-items-center flex-column">
         <h1 class="masthead-heading text-uppercase mb-0">Paraíso Tico</h1>
         <!-- Icon Divider-->
@@ -67,7 +67,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="../images/barco.jpeg" alt="..." />
+                            <img class="img-fluid" src="../Img/barco.jpeg" alt="..." />
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
@@ -76,7 +76,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="../images/arena.jpeg" alt="..." />
+                            <img class="img-fluid" src="../Img/arena.jpeg" alt="..." />
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
@@ -85,7 +85,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="../images/volcan.jpg" alt="..." />
+                            <img class="img-fluid" src="../Img/volcan.jpg" alt="..." />
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
@@ -94,7 +94,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="../images/playas.jpeg" alt="..." />
+                            <img class="img-fluid" src="../Img/playas.jpeg" alt="..." />
                         </div>
                     </div>
                     <!-- Portfolio Item 5-->
@@ -103,7 +103,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="../images/grecia.jpeg" alt="..." />
+                            <img class="img-fluid" src="../Img/grecia.jpeg" alt="..." />
                         </div>
                     </div>
                     <!-- Portfolio Item 6-->
@@ -112,7 +112,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="../images/colibri.webp" alt="..." />
+                            <img class="img-fluid" src="../Img/colibri.webp" alt="..." />
                         </div>
                     </div>
                 </div>
