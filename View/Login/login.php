@@ -37,11 +37,12 @@
                 </div>
 
                 <div class="form-check mb-3">
-                  <input class="form-check-input" type="checkbox" id="rememberPasswordCheck" name="remember">
-                  <label class="form-check-label" for="rememberPasswordCheck">
-                    Recordar contraseña
-                  </label>
-                </div>
+                <input class="form-check-input" type="checkbox" id="rememberPasswordCheck" name="remember">
+                <label class="form-check-label" for="rememberPasswordCheck">
+                  <a href="otra_pagina.html" class="text-decoration-none">Recordar contraseña</a>
+                </label>
+              </div>
+
 
                 <div class="d-grid">
                   <button class="btn btn-login" type="submit" name="btnIniciarSesion">Iniciar sesión</button>
