@@ -35,22 +35,25 @@
                     placeholder="Password" required>
                   <label for="floatingPassword">Contraseña</label>
                 </div>
-
-                <div class="form-check mb-3">
-                  <label class="form-check-label">
-                    <a href="otra_pagina.html" class="text-decoration-none">Recordar contraseña</a>
-                  </label>
-                </div>
-
-                <div class="form-check mb-3">
-                  <label class="form-check-label">
-                    <a href="otra_pagina.html" class="text-decoration-none">Crear una cuenta</a>
-                  </label>
-                </div>
-
+                
                 <div class="d-grid">
                   <button class="btn btn-login" type="submit" name="btnIniciarSesion">Iniciar sesión</button>
                 </div>
+
+                  <div class="text-center">
+                  <div class="form-check mb-2">
+                    <label class="form-check-label">
+                      <a href="otra_pagina.html" class="text-decoration-none">Crear una cuenta</a>
+                    </label>
+                  </div>
+
+                    <div class="form-check mb-3">
+                      <label class="form-check-label">
+                        <a href="otra_pagina.html" class="text-decoration-none">Cambiar contraseña</a>
+                      </label>
+                    </div>
+                  </div>
+
               </form>
             </div>
           </div>
