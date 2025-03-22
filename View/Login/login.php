@@ -1,5 +1,5 @@
 <?php
-    include_once $_SERVER["DOCUMENT_ROOT"] ."/ParaisoTico/Controller/LoginController.php";
+    include_once __DIR__ . '/../../Controller/LoginController.php';
 ?>
 
 <!doctype html>
