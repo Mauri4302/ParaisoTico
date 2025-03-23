@@ -1,4 +1,3 @@
-<?php include '../../Controller/BlogController.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,9 +12,9 @@
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap) -->
-        <link href="../Styles/styles.css" rel="stylesheet" />
+        <link href="app/Views/Styles/styles.css" rel="stylesheet" />
         <!-- Blog custom CSS -->
-        <link href="../Styles/blog.css" rel="stylesheet" />
+        <link href="app/Views/Styles/blog.css" rel="stylesheet" />
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
@@ -68,15 +67,12 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <div class="row">
-                    <?php
-                        // Loop through tours (loaded in BlogController.php) to create a card for each tour
-                        $totalImages = 30; // Total pool of images
-                        foreach ($tours as $index => $tour) {
-                            $imageIndex = ($index % $totalImages) + 1;
-                            $imagePath = "../Img/blog/image_blog_" . $imageIndex . ".jpg";
+                     <?php
+                    if (!empty($tours)) {
+                        foreach ($tours as $tour) {
                             echo '<div class="col-md-6 col-lg-4 mb-4">';
                             echo '  <div class="card h-100">';
-                            echo '      <img src="' . $imagePath . '" class="card-img-top" alt="Tour Image">';
+                            echo '      <img src="' . $tour['imagePath'] . '" class="card-img-top" alt="Tour Image">';
                             echo '      <div class="card-body d-flex flex-column">';
                             echo '          <h5 class="card-title">' . $tour['title'] . '</h5>';
                             echo '          <p class="card-text">' . $tour['summary'] . '</p>';
@@ -85,6 +81,9 @@
                             echo '  </div>';
                             echo '</div>';
                         }
+                    } else {
+                        echo '<p>No hay tours disponibles.</p>';
+                    }
                     ?>
                 </div>
             </div>

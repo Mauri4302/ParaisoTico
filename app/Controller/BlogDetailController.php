@@ -1,5 +1,5 @@
 <?php
-    $jsonData = file_get_contents(__DIR__ . '/../View/Data/tours.json');
+    $jsonData = file_get_contents(__DIR__ . 'app/Views/Data/tours.json');
     $tours = json_decode($jsonData, true);
     
     $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
