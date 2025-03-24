@@ -6,6 +6,7 @@ require 'app/Controller/ControllerNavigation.php';
 require 'app/Controller/ControllerUsuario.php';
 require 'app/Controller/LoginController.php'; 
 require 'app/Controller/BlogController.php';
+require 'app/Controller/ControllerReservacion.php';
 
 $route = $_GET['route'] ?? '';
 $action = $_GET['action'] ?? 'login';
@@ -88,7 +89,7 @@ switch ($route) {
             case 'home':
                 $controller->home();
                 break;
-                
+
             case 'cuenta':
                 $controller->cuenta();
             break;
@@ -107,6 +108,22 @@ switch ($route) {
                 break;
             case 'blogDetail':
                 $controller->blogDetail($_GET['id']);
+                break;
+            
+            default:
+                break;
+        }
+        break;
+
+    case 'reservacion':
+        $controller = new ControllerReservacion();
+        switch ($action) {
+            
+            case 'reservar':
+                $controller->reservar();
+                break;
+            case 'blogDetail':
+                // $controller->blogDetail($_GET['id']);
                 break;
             
             default:
