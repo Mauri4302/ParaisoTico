@@ -65,7 +65,6 @@ class Usuario
         }
     }
 
-    // Retornar null si las credenciales son incorrectas
     return null;
 }
 
@@ -109,7 +108,7 @@ class Usuario
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            $item = new self();
+            $item = new Usuario();
             $item->id_usuario = $row['id_usuario'];
             $item->username = $row['username'];
             $item->nombre = $row['nombre'];
@@ -186,6 +185,27 @@ class Usuario
         $stmt = self::$conn->prepare($query);
 
         $result = $stmt->execute([':id' => $this->id_usuario]);
+
+        return $result;
+    }
+
+    public function updatePassword($currentPassword, $newPassword)
+    {
+    
+        if (!password_verify($currentPassword, $this->password)) {
+            return false; 
+        }
+
+    
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+    
+        $query = "UPDATE Usuario SET pass = :pass WHERE id_usuario = :id;";
+        $stmt = self::$conn->prepare($query);
+        $result = $stmt->execute([
+            ':pass' => $hashedPassword,
+            ':id' => $this->id_usuario,
+        ]);
 
         return $result;
     }

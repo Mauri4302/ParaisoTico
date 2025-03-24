@@ -16,6 +16,7 @@ public function login()
             echo "Usuario: " . $usernameOrEmail;    
             echo "Contraseña: " . $password;    
             if ($usuario) {
+                session_set_cookie_params(3600);
                 // Iniciar sesión
                 session_start();
                 $_SESSION['usuario'] = [
@@ -27,7 +28,7 @@ public function login()
                 ];
 
                 // Redirigir al home
-                header('Location: index.php?route=home');
+                header('Location: index.php?route=home&action=home');
                 exit();
             } else {
                 // Mostrar mensaje de error
@@ -52,14 +53,14 @@ public function login()
         $confirm_password = $_POST['confirm_password'] ?? '';
         $imagen = $_FILES['imagen'] ?? null;
 
-        echo "Datos del formulario:<br>";
-        echo "Username: $username<br>";
-        echo "Email: $email<br>";
-        echo "Nombre: $nombre<br>";
-        echo "Apellido: $primer_apellido<br>";
-        echo "Password: $password<br>";
-        echo "Confirm Password: $confirm_password<br>";
-        echo "Imagen: " . print_r($imagen, true) . "<br>";
+        // echo "Datos del formulario:<br>";
+        // echo "Username: $username<br>";
+        // echo "Email: $email<br>";
+        // echo "Nombre: $nombre<br>";
+        // echo "Apellido: $primer_apellido<br>";
+        // echo "Password: $password<br>";
+        // echo "Confirm Password: $confirm_password<br>";
+        // echo "Imagen: " . print_r($imagen, true) . "<br>";
 
         // Validar que las contraseñas coincidan
         if ($password !== $confirm_password) {

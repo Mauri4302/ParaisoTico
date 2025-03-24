@@ -4,8 +4,8 @@ session_start(); // Iniciar sesión para manejar mensajes y autenticación
 
 require 'app/Controller/ControllerNavigation.php';
 require 'app/Controller/ControllerUsuario.php';
-require 'app/Controller/LoginController.php'; // Incluir el LoginController
-require 'app/Controller/BlogController.php'; // Incluir el LoginController
+require 'app/Controller/LoginController.php'; 
+require 'app/Controller/BlogController.php';
 
 $route = $_GET['route'] ?? '';
 $action = $_GET['action'] ?? 'login';
@@ -29,6 +29,9 @@ switch ($route) {
             case 'show':
                 $controller->show($_GET['id']);
                 break;
+            case 'changePassword':
+                $controller->changePassword();
+                break;
 
             // ACTIONS
             case 'store':
@@ -36,6 +39,14 @@ switch ($route) {
                 break;
             case 'update':
                 $controller->update($_POST, $_GET['id']);
+                break;
+             case 'updatePassword':
+                if (isset($_GET['id'])) {
+                    $controller->updatePassword($_POST, $_GET['id']);
+                } else {
+                    echo "ID de usuario no proporcionado.";
+                    exit;
+                }
                 break;
             case 'destroy':
                 $controller->destroy($_GET['id']);
@@ -51,19 +62,19 @@ switch ($route) {
 
         switch ($action) {
             case 'login':
-                include 'app/Views/Login/login.php'; // Mostrar el formulario de inicio de sesión
+                include 'app/Views/Login/login.php'; 
                 break;
             case 'auth':
-                $controller->login(); // Procesar el inicio de sesión
+                $controller->login(); 
                 break;
             case 'register':
-                include 'app/Views/Login/crearCuenta.php'; // Mostrar el formulario de registro
+                include 'app/Views/Login/crearCuenta.php'; 
                 break;
             case 'register_action':
-                $controller->register(); // Procesar el registro
+                $controller->register(); 
                 break;
             case 'logout':
-                $controller->logout(); // Cerrar sesión
+                $controller->logout(); 
                 break;
 
             default:
@@ -77,15 +88,33 @@ switch ($route) {
             case 'home':
                 $controller->home();
                 break;
+                
+            case 'cuenta':
+                $controller->cuenta();
+            break;
+            
+            default:
+                break;
+        }
+        break;
+
+    case 'blog':
+        $controller = new ControllerNavigation();
+        switch ($action) {
+            
             case 'blog':
                 $controller->blog();
+                break;
+            case 'blogDetail':
+                $controller->blogDetail($_GET['id']);
                 break;
             
             default:
                 break;
         }
+        break;
 
-        default:
+    default:
         $controller = new ControllerNavigation();
         $controller->home();
         break;

@@ -11,7 +11,20 @@ class ControllerNavigation
         include './app/Views/Login/home.php';
     }
     
+    public function cuenta(){
+        include './app/Views/Usuario/index.php';
+    }
+    
     public function blog(){
-        include './app/Views/Login/blog.php';
+        
+        $blogController = new BlogController();
+        $blogController->blog();
+    }
+
+    public function blogDetail($id)
+    {
+        // Instanciar BlogController y llamar a su método blogDetail()
+        $blogController = new BlogController();
+        $blogController->blogDetail($id);
     }
 }
