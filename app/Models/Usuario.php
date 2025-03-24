@@ -192,21 +192,33 @@ class Usuario
     public function updatePassword($currentPassword, $newPassword)
     {
     
-        if (!password_verify($currentPassword, $this->password)) {
-            return false; 
-        }
+        // Cargar la contraseña hasheada desde la BD antes de verificar
+    $query = "SELECT pass FROM Usuario WHERE id_usuario = :id";
+    $stmt = self::$conn->prepare($query);
+    $stmt->execute([':id' => $this->id_usuario]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    
-        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+    if (!$usuario) {
+        return false; // Usuario no encontrado
+    }
 
-    
-        $query = "UPDATE Usuario SET pass = :pass WHERE id_usuario = :id;";
-        $stmt = self::$conn->prepare($query);
-        $result = $stmt->execute([
-            ':pass' => $hashedPassword,
-            ':id' => $this->id_usuario,
-        ]);
+    $hashedPassword = $usuario['pass']; // Obtener el hash de la BD
 
-        return $result;
+    if (!password_verify($currentPassword, $hashedPassword)) {
+        return false; // La contraseña actual no es correcta
+    }
+
+    // Hashear la nueva contraseña
+    $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+    // Actualizar la contraseña en la BD
+    $query = "UPDATE Usuario SET pass = :pass WHERE id_usuario = :id";
+    $stmt = self::$conn->prepare($query);
+    $result = $stmt->execute([
+        ':pass' => $newHashedPassword,
+        ':id' => $this->id_usuario,
+    ]);
+
+    return $result;
     }
 }
