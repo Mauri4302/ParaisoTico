@@ -14,6 +14,7 @@ class ControllerReservacion
         include 'app/Views/reservacion/index.php';
     }
 
+    //hhhh
     public function reservar()
     {
         $actividades = Actividad::all();
