@@ -101,7 +101,7 @@ class Usuario
     {
         self::init();
 
-        $query = "SELECT * FROM Usuario WHERE id_usuario = :id;";
+        $query = "SELECT * FROM Usuario WHERE id_usuario = :id LIMIT 1;";
         $stmt = self::$conn->prepare($query);
         $stmt->execute([':id' => $id]);
 

@@ -14,9 +14,11 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="app/Views/Styles/bootstrap.css" rel="stylesheet" />
     <link href="app/Views/Styles/styles.css" rel="stylesheet" />
     <link href="app/Views/Styles/blog.css" rel="stylesheet" />
     <link href="app/Views/Styles/blogDetail.css" rel="stylesheet" />
+    <link href="app/Views/Styles/reservacion.css" rel="stylesheet" />
 </head>
 <body id="page-top">
     <!-- Incluir el nav -->

@@ -6,15 +6,14 @@ class Reservacion
 {
     private static $conn;
 
-    public $id_reservacion;
+    public $id_reserva;
     public $id_usuario;
-    public $id_canton;
-    public $id_categoria;
-    public $fecha_inicio;
-    public $fecha_fin;
-    public $numero_personas;
+    public $id_actividad;
+    public $id_oferta;
+    public $fecha_reserva;
+    public $fecha_actividad;
     public $total;
-    public $estado;
+    public $activo;
 
     public function __construct()
     {
@@ -31,53 +30,62 @@ class Reservacion
 
     public static function all()
     {
-        self::init();
+        // Verificar autenticación
+    if (!isset($_SESSION['usuario'])) {
+        header('Location: index.php?route=login&action=login');
+        exit;
+    }
 
-        $query = "SELECT * FROM Reservacion;";
-        $stmt = self::$conn->prepare($query);
-        $stmt->execute();
+    // Obtener reservaciones del usuario actual
+    $reservaciones = Reservacion::getByUser($_SESSION['usuario']['id_usuario']);
+    return $reservaciones;
+    // Cargar vista
+    include 'app/Views/reservacion/index.php';
+        // self::init();
 
-        $data = [];
+        // $query = "SELECT * FROM Reservas;";
+        // $stmt = self::$conn->prepare($query);
+        // $stmt->execute();
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $item = new self();
-            $item->id_reservacion = $row['id_reservacion'];
-            $item->id_usuario = $row['id_usuario'];
-            $item->id_canton = $row['id_canton'];
-            $item->id_categoria = $row['id_categoria'];
-            $item->fecha_inicio = $row['fecha_inicio'];
-            $item->fecha_fin = $row['fecha_fin'];
-            $item->numero_personas = $row['numero_personas'];
-            $item->total = $row['total'];
-            $item->estado = $row['estado'];
+        // $data = [];
 
-            $data[] = $item;
-        }
+        // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        //     $item = new self();
+        //     $item->id_reservacion = $row['id_reservacion'];
+        //     $item->id_usuario = $row['id_usuario'];
+        //     $item->id_actividad = $row['id_actividad'];
+        //     $item->id_oferta = $row['id_oferta'];
+        //     $item->fecha_reserva = $row['fecha_reserva'];
+        //     $item->fecha_actividad = $row['fecha_actividad'];
+        //     $item->total = $row['total'];
+        //     $item->activo = $row['activo'];
 
-        return $data;
+        //     $data[] = $item;
+        // }
+
+        // return $data;
     }
 
     public static function find($id)
     {
         self::init();
 
-        $query = "SELECT * FROM Reservacion WHERE id_reservacion = :id;";
+        $query = "SELECT * FROM Reservas WHERE id_reserva = :id;";
         $stmt = self::$conn->prepare($query);
         $stmt->execute([':id' => $id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            $item = new self();
-            $item->id_reservacion = $row['id_reservacion'];
+            $item = new Reservacion();
+            $item->id_reserva = $row['id_reserva'];
             $item->id_usuario = $row['id_usuario'];
-            $item->id_canton = $row['id_canton'];
-            $item->id_categoria = $row['id_categoria'];
-            $item->fecha_inicio = $row['fecha_inicio'];
-            $item->fecha_fin = $row['fecha_fin'];
-            $item->numero_personas = $row['numero_personas'];
+            $item->id_actividad = $row['id_actividad'];
+            $item->id_oferta = $row['id_oferta'];
+            $item->fecha_reserva = $row['fecha_reserva'];
+            $item->fecha_actividad = $row['fecha_actividad'];
             $item->total = $row['total'];
-            $item->estado = $row['estado'];
+            $item->activo = $row['activo'];
 
             return $item;
         }
@@ -88,52 +96,48 @@ class Reservacion
     public function save()
     {
         self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = "INSERT INTO Reservacion (id_usuario, id_canton, id_categoria, fecha_inicio, fecha_fin, numero_personas, total, estado) 
-                  VALUES (:id_usuario, :id_canton, :id_categoria, :fecha_inicio, :fecha_fin, :numero_personas, :total, :estado);";
+        $query = "INSERT INTO Reservas (id_usuario, id_actividad, id_oferta, fecha_reserva, fecha_actividad, total, activo) 
+                  VALUES (:id_usuario, :id_actividad, :id_oferta, :fecha_reserva, :fecha_actividad, :total, :activo);";
         $stmt = self::$conn->prepare($query);
 
         return $stmt->execute([
             ':id_usuario' => $this->id_usuario,
-            ':id_canton' => $this->id_canton,
-            ':id_categoria' => $this->id_categoria,
-            ':fecha_inicio' => $this->fecha_inicio,
-            ':fecha_fin' => $this->fecha_fin,
-            ':numero_personas' => $this->numero_personas,
+            ':id_actividad' => $this->id_actividad,
+            ':id_oferta' => $this->id_oferta,
+            ':fecha_reserva' => $this->fecha_reserva,
+            ':fecha_actividad' => $this->fecha_actividad,
             ':total' => $this->total,
-            ':estado' => $this->estado,
+            ':activo' => $this->activo,
         ]);
     }
 
     public function update()
     {
-        $query = "UPDATE Reservacion SET 
+        $query = "UPDATE Reservas SET 
                   id_usuario = :id_usuario,
-                  id_canton = :id_canton,
-                  id_categoria = :id_categoria,
-                  fecha_inicio = :fecha_inicio,
-                  fecha_fin = :fecha_fin,
-                  numero_personas = :numero_personas,
+                  id_actividad = :id_actividad,
+                  id_oferta = :id_oferta,
+                  fecha_reserva = :fecha_reserva,
+                  fecha_actividad = :fecha_actividad,
                   total = :total,
-                  estado = :estado
+                  activo = :activo
                   WHERE id_reservacion = :id;";
         $stmt = self::$conn->prepare($query);
 
         return $stmt->execute([
-            ':id' => $this->id_reservacion,
             ':id_usuario' => $this->id_usuario,
-            ':id_canton' => $this->id_canton,
-            ':id_categoria' => $this->id_categoria,
-            ':fecha_inicio' => $this->fecha_inicio,
-            ':fecha_fin' => $this->fecha_fin,
-            ':numero_personas' => $this->numero_personas,
+            ':id_actividad' => $this->id_actividad,
+            ':id_oferta' => $this->id_oferta,
+            ':fecha_reserva' => $this->fecha_reserva,
+            ':fecha_actividad' => $this->fecha_actividad,
             ':total' => $this->total,
-            ':estado' => $this->estado,
+            ':activo' => $this->activo,
         ]);
     }
 
     public function delete()
     {
-        $query = "DELETE FROM Reservacion WHERE id_reservacion = :id;";
+        $query = "DELETE FROM Reservas WHERE id_reservacion = :id;";
         $stmt = self::$conn->prepare($query);
 
         return $stmt->execute([':id' => $this->id_reservacion]);
@@ -142,7 +146,7 @@ class Reservacion
     public static function makeReservation($data)
     {
         self::init();
-        $query = "INSERT INTO Reservacion (id_usuario, id_canton, id_categoria, fecha_inicio, fecha_fin, numero_personas, total, estado) 
+        $query = "INSERT INTO Reservas (id_usuario, id_canton, id_categoria, fecha_inicio, fecha_fin, numero_personas, total, estado) 
                   VALUES (:id_usuario, :id_canton, :id_categoria, :fecha_inicio, :fecha_fin, :numero_personas, :total, 'pendiente');";
         $stmt = self::$conn->prepare($query);
         return $stmt->execute([
@@ -154,5 +158,34 @@ class Reservacion
             ':numero_personas' => $data['numero_personas'],
             ':total' => $data['total'],
         ]);
+    }
+
+    public static function getByUser($userId)
+{
+    self::init();
+    
+    $query = "SELECT * FROM Reservas 
+              WHERE id_usuario = :user_id 
+              ORDER BY fecha_actividad DESC";
+    $stmt = self::$conn->prepare($query);
+    $stmt->execute([':user_id' => $userId]);
+    
+    $reservaciones = [];
+    
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $reserva = new Reservacion();
+        $reserva->id_reserva = $row['id_reserva'];
+        $reserva->id_usuario = $row['id_usuario'];
+            $reserva->id_actividad = $row['id_actividad'];
+            $reserva->id_oferta = $row['id_oferta'];
+            $reserva->fecha_reserva = $row['fecha_reserva'];
+            $reserva->fecha_actividad = $row['fecha_actividad'];
+            $reserva->total = $row['total'];
+            $reserva->activo = $row['activo'];
+            
+            $reservaciones[] = $reserva;
+        }
+        
+        return $reservaciones;
     }
 }

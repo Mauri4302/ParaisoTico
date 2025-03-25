@@ -25,6 +25,7 @@
                 <li><a class="dropdown-item" href="#">Cambiar Contraseña</a></li>
                 <li><a class="dropdown-item" href="#">Administrar Actividades</a></li>
                 <li><a class="dropdown-item" href="index.php?route=reservacion&action=reservar">Hacer Reservacion</a></li>
+                <li><a class="dropdown-item" href="index.php?route=reservacion&action=index">Mis Reservaciones</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="index.php?route=login&action=logout">Cerrar Sesión</a></li>
             </ul>

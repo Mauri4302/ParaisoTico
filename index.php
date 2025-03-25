@@ -7,6 +7,8 @@ require 'app/Controller/ControllerUsuario.php';
 require 'app/Controller/LoginController.php'; 
 require 'app/Controller/BlogController.php';
 require 'app/Controller/ControllerReservacion.php';
+require 'app/Controller/ActividadController.php';
+require 'app/Controller/ControllerOferta.php';
 
 $route = $_GET['route'] ?? '';
 $action = $_GET['action'] ?? 'login';
@@ -122,11 +124,18 @@ switch ($route) {
             case 'reservar':
                 $controller->reservar();
                 break;
-            case 'blogDetail':
-                // $controller->blogDetail($_GET['id']);
+            case 'index':
+                $controller->index();
+                break;
+            case 'store':
+                $controller->store($_POST);
+                break;
+            case 'show':
+                $controller->show($_GET['id']);
                 break;
             
             default:
+                $controller->reservar();
                 break;
         }
         break;
