@@ -7,14 +7,13 @@ require_once 'app/Models/Oferta.php';
 class ControllerReservacion
 {
     // VISTAS
-
     public function index()
     {
         $reservaciones = Reservacion::all();
         include 'app/Views/reservacion/index.php';
     }
 
-    //hhhh
+    
     public function reservar()
     {
         $actividades = Actividad::all();
